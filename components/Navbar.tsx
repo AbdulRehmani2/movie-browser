@@ -15,10 +15,14 @@ function Navbar() {
   ];
   return (
     <div>
-      <div className="flex justify-between py-5 px-3">
-        <Menu items={items} />
-        <h1>Movie Browser</h1>
-        <HoverSearch />
+      <div className="grid grid-cols-3 grid-rows-1 py-5 px-3">
+        <div className="flex justify-start">
+          <Menu items={items} />
+        </div>
+        <h1 className="flex justify-center">Movie Browser</h1>
+        <div className="flex justify-end">
+          <HoverSearch />
+        </div>
       </div>
     </div>
   );

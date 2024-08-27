@@ -5,7 +5,7 @@ import { IoMenuSharp } from "react-icons/io5";
 import FocusElement from "./FocusElement";
 
 function Menu({ items }: { items: string[] }) {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
   const hoverEffect =
     " p-1 hover:text-black hover:bg-white hover:cursor-pointer hover:rounded-sm";
 
