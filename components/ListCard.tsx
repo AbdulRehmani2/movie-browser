@@ -19,7 +19,9 @@ function ListCard({ data }: { data: movieType }) {
             ? `${data.name.slice(0, NAME_CHAR_LIMIT)}...`
             : data.name}
         </span>
-        <span className="text-left">Score: {data.ratingValue}</span>
+        <span className="text-left">
+          Score: {data.aggregateRating.ratingValue}
+        </span>
       </div>
     </div>
   );
