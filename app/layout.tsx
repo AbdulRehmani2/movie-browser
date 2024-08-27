@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ubuntu.className} bg-slate-950 text-slate-300 mx-5`}>
+      <body className={`${ubuntu.className} bg-slate-950 text-slate-300`}>
         <Navbar />
         {children}
       </body>

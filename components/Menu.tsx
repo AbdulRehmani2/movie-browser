@@ -17,7 +17,7 @@ function Menu({ items }: { items: string[] }) {
       <div className="w-24">
         <FocusElement hidden={hidden} setHidden={setHidden}>
           <div
-            className={`flex flex-col gap-1 mt-3 bg-black py-2 px-3 rounded-md border-white border-[1px] absolute`}
+            className={`flex flex-col gap-1 mt-3 bg-black py-2 px-3 rounded-md border-white border-[1px] absolute z-[1]`}
           >
             {items.map((element: string, index: number) => {
               return (

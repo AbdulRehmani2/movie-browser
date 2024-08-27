@@ -39,23 +39,27 @@ export default function Carousal() {
   }, [index]);
 
   return (
-    <div className="w-full">
+    <div className="w-full relative z-[0]">
       {movie == null ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="h-[50vh] relative">
+        <div className="h-[50vh] z-[0] relative">
           <div
-            className="absolute inset-0 bg-[50%_25%] bg-cover opacity-50"
+            className="z-[-10] absolute inset-0 bg-[50%_25%] bg-cover opacity-75"
             style={{ backgroundImage: `url(${movie.image})` }}
           ></div>
-          <div className="relative z-10 flex items-center justify-between h-full">
+          <div className="relative z-[0] flex items-center justify-between h-full px-2">
             <button
+              className="cursor-pointer"
               onClick={() => setIndex((index) => (index == 0 ? 99 : index - 1))}
             >
               <FaArrowLeft />
             </button>
             <CarouselCard data={movie} />
-            <button onClick={() => setIndex((index) => (index + 1) % 100)}>
+            <button
+              className="cursor-pointer"
+              onClick={() => setIndex((index) => (index + 1) % 100)}
+            >
               <FaArrowRight />
             </button>
           </div>
