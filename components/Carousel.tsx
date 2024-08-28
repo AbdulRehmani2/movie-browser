@@ -26,6 +26,7 @@ export interface movieType {
 
 export interface movieDataType {
   short: movieType;
+  imdbId: string;
 }
 
 export default function Carousal({ movies }: { movies: movieType[] }) {

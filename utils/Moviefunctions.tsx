@@ -20,6 +20,7 @@ export async function getMovieFromId(id: string) {
     ...data.short,
     name: cleanData(data.short.name),
     description: cleanData(data.short.description),
+    imbdId: data.imdbId,
   };
 }
 
@@ -43,6 +44,7 @@ async function fetchMovieData(url: string) {
         ...element.short,
         name: cleanData(element.short.name),
         description: cleanData(element.short.description),
+        imdbId: element.imdbId,
       };
     });
 

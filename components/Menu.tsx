@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
 import FocusElement from "./FocusElement";
+import Link from "next/link";
 
 function Menu({ items }: { items: string[] }) {
   const [hidden, setHidden] = useState(true);
@@ -21,9 +22,9 @@ function Menu({ items }: { items: string[] }) {
           >
             {items.map((element: string, index: number) => {
               return (
-                <span key={index} className={hoverEffect}>
+                <Link href="" key={index} className={hoverEffect}>
                   {element}
-                </span>
+                </Link>
               );
             })}
           </div>

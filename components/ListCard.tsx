@@ -1,6 +1,7 @@
 import React from "react";
 import { movieType } from "./Carousel";
 import Image from "next/image";
+import Link from "next/link";
 
 function ListCard({ data }: { data: movieType }) {
   const NAME_CHAR_LIMIT = 17;
@@ -15,11 +16,11 @@ function ListCard({ data }: { data: movieType }) {
         style={{ width: "190px", height: "350px" }}
       />
       <div className="flex flex-col justify-between w-full px-2">
-        <span>
+        <Link href={`/movie/${data.imdbId}`} className="hover:text-blue-500">
           {data.name.length > NAME_CHAR_LIMIT
             ? `${data.name.slice(0, NAME_CHAR_LIMIT)}...`
             : data.name}
-        </span>
+        </Link>
         <span className="text-left">
           Score: {data.aggregateRating.ratingValue}
         </span>

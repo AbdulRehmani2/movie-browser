@@ -1,25 +1,19 @@
 import React from "react";
-import { CiSearch } from "react-icons/ci";
 import Menu from "./Menu";
 import HoverSearch from "./HoverSearch";
+import Link from "next/link";
 
 function Navbar() {
-  const items = [
-    "Home",
-    "Movies",
-    "Shows",
-    "Top Rated Movies",
-    "Top Rated Shows",
-    "Most Watched Movies",
-    "Most Watched Shows",
-  ];
+  const items = ["Home", "Movies", "Top Rated Movies", "Most Watched Movies"];
   return (
     <div className="bg-slate-900">
       <div className="grid grid-cols-3 grid-rows-1 py-5 px-3">
         <div className="flex justify-start">
           <Menu items={items} />
         </div>
-        <h1 className="flex justify-center">Movie Browser</h1>
+        <h1 className="flex justify-center">
+          <Link href="/">Movie Browser</Link>
+        </h1>
         <div className="flex justify-end">
           <HoverSearch />
         </div>
