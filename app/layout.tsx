@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Ubuntu } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const ubuntu = Ubuntu({ subsets: ["latin"], weight: "400" });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${ubuntu.className} bg-slate-950 text-slate-300`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

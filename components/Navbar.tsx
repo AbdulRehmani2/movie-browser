@@ -14,7 +14,7 @@ function Navbar() {
     "Most Watched Shows",
   ];
   return (
-    <div>
+    <div className="bg-slate-900">
       <div className="grid grid-cols-3 grid-rows-1 py-5 px-3">
         <div className="flex justify-start">
           <Menu items={items} />

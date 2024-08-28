@@ -15,7 +15,7 @@ export interface movieType {
   };
   type: string;
   genre: string[];
-  actors: [
+  actor: [
     {
       name: string;
       url: string;
