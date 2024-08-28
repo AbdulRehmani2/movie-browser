@@ -21,6 +21,7 @@ export interface movieType {
       url: string;
     }
   ];
+  imdbId: string;
 }
 
 export interface movieDataType {
@@ -33,7 +34,7 @@ export default function Carousal({ movies }: { movies: movieType[] }) {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((index) => (index + 1) % movies.length);
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(id);
   }, [index]);
@@ -43,14 +44,14 @@ export default function Carousal({ movies }: { movies: movieType[] }) {
       {movies.length == 0 ? (
         <h1>Loading...</h1>
       ) : (
-        <div className="h-[50vh] z-[0] relative">
+        <div className="h-[70vh] z-[0] relative">
           <div
             className="z-[-10] absolute inset-0 bg-[50%_25%] bg-cover opacity-75"
             style={{ backgroundImage: `url(${movies[index].image})` }}
           ></div>
           <div className="relative z-[0] flex items-center justify-between h-full px-2">
             <button
-              className="cursor-pointer"
+              className="cursor-pointer bg-black text-white rounded-full p-3 opacity-75 hover:opacity-100"
               onClick={() =>
                 setIndex((index) =>
                   index == 0 ? movies.length - 1 : index - 1
@@ -61,7 +62,7 @@ export default function Carousal({ movies }: { movies: movieType[] }) {
             </button>
             <CarouselCard data={movies[index]} />
             <button
-              className="cursor-pointer"
+              className="cursor-pointer bg-black text-white rounded-full p-3 opacity-75 hover:opacity-100"
               onClick={() => setIndex((index) => (index + 1) % movies.length)}
             >
               <FaArrowRight />

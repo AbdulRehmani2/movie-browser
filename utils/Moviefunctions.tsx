@@ -1,29 +1,31 @@
-import React from "react";
-import Carousal, { movieType, movieDataType } from "./Carousel";
+import { Data } from "@/components/TrendingMovieContainer";
+import { movieDataType } from "@/components/Carousel";
 
-async function CarouselContainer() {
-  const data: movieType[] = await fetchTrendingMovieData();
-  return (
-    <div>
-      <Carousal movies={data} />
-    </div>
-  );
+export async function fetchTrendingMovieData() {
+  const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${process.env.NEXT_APP_TMDB_API_KEY}`;
+  return fetchMovieData(url);
 }
 
-interface Data {
-  results: [
-    {
-      id: number;
-    }
-  ];
+export async function fetchLatestMovieData() {
+  const year = new Date().getFullYear();
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_APP_TMDB_API_KEY}&year=${year}`;
+  return fetchMovieData(url);
 }
 
-async function fetchTrendingMovieData() {
+export async function getMovieFromId(id: string) {
+  const url = `https://search.imdbot.workers.dev/?tt=${id}`;
+  const res = await fetch(url);
+  const data = await res.json();
+  return {
+    ...data.short,
+    name: cleanData(data.short.name),
+    description: cleanData(data.short.description),
+  };
+}
+
+async function fetchMovieData(url: string) {
   try {
-    const res = await fetch(
-      `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${process.env.NEXT_APP_TMDB_API_KEY}`,
-      { next: { revalidate: 86400 } }
-    );
+    const res = await fetch(url, { next: { revalidate: 86400 } });
     if (!res.ok) throw new Error("Failed to fetch data");
 
     const data = await res.json();
@@ -79,5 +81,3 @@ async function getId(id: number) {
 function cleanData(data: string) {
   return data.replace(/&apos;/g, "'");
 }
-
-export default CarouselContainer;
