@@ -9,18 +9,39 @@ export async function fetchTrendingMovieData() {
 export async function fetchLatestMovieData() {
   const year = new Date().getFullYear();
   const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_APP_TMDB_API_KEY}&year=${year}`;
-  return fetchMovieData(url);
+  const data = fetchMovieData(url);
+  return data;
 }
 
+// export async function getMovieFromId(id: string) {
+//   const url = `https://search.imdbot.workers.dev/?tt=${id}`;
+//   const res = await fetch(url);
+//   const data = await res.json();
+//   return {
+//     ...data.short,
+//     name: cleanData(data.short.name),
+//     description: cleanData(data.short.description),
+//     imbdId: data.imdbId,
+//   };
+// }
 export async function getMovieFromId(id: string) {
-  const url = `https://search.imdbot.workers.dev/?tt=${id}`;
+  const url = `http://www.omdbapi.com/?apikey=${process.env.NEXT_APP_OMDB_API_KEY}&i=${id}`;
   const res = await fetch(url);
   const data = await res.json();
   return {
-    ...data.short,
-    name: cleanData(data.short.name),
-    description: cleanData(data.short.description),
-    imbdId: data.imdbId,
+    name: data.Title,
+    description: data.Plot,
+    imdbId: data.imdbID,
+    url: `https://www.imdb.com/title/${data.imdbID}/`,
+    image: data.Poster,
+    aggregateRating: {
+      ratingValue: data.imdbRating,
+    },
+    type: data.Type,
+    genre: data.Genre.split(","),
+    actor: data.Actors.split(",").map((e: string) => {
+      return { name: e, url: "#" };
+    }),
   };
 }
 
@@ -39,14 +60,49 @@ async function fetchMovieData(url: string) {
 
     const details = await Promise.all(promises);
 
-    const movies = details.map((element: movieDataType) => {
+    // const movies = details.map((element: movieDataType) => {
+    //   return {
+    //     ...element.short,
+    //     name: cleanData(element.short.name),
+    //     description: cleanData(element.short.description),
+    //     imdbId: element.imdbId,
+    //   };
+    // });
+
+    const movies = details.map((element) => {
       return {
-        ...element.short,
-        name: cleanData(element.short.name),
-        description: cleanData(element.short.description),
-        imdbId: element.imdbId,
+        name: element.Title,
+        description: element.Plot,
+        imdbId: element.imdbID,
+        url: `https://www.imdb.com/title/${element.imdbID}/`,
+        image: element.Poster,
+        aggregateRating: {
+          ratingValue: element.imdbRating,
+        },
+        type: element.Type,
+        genre: element.Genre.split(","),
+        actor: element.Actors.split(",").map((e: string) => {
+          return { name: e, url: "#" };
+        }),
       };
     });
+
+    //   const movies: {
+    //     name: string;
+    //     description: string;
+    //     imdbId: string;
+    //     url: string;
+    //     image: string;
+    //     aggregateRating: {
+    //         ratingValue: number;
+    //     };
+    //     type: string;
+    //     genre: string[];
+    //     actor: [{
+    //         name: string;
+    //         url: string;
+    //     }];
+    // }[]
 
     return movies;
   } catch (err) {
@@ -67,8 +123,15 @@ async function parseData(data: Data) {
   return await Promise.all(promises);
 }
 
+// async function getDetails(id: string) {
+//   const res = await fetch(`https://search.imdbot.workers.dev/?tt=${id}`);
+//   return await res.json();
+// }
+
 async function getDetails(id: string) {
-  const res = await fetch(`https://search.imdbot.workers.dev/?tt=${id}`);
+  const res = await fetch(
+    `http://www.omdbapi.com/?apikey=${process.env.NEXT_APP_OMDB_API_KEY}&i=${id}`
+  );
   return await res.json();
 }
 
