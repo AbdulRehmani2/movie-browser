@@ -1,14 +1,14 @@
 import { Data } from "@/components/TrendingMovieContainer";
 import { movieDataType, movieType } from "@/components/Carousel";
 
-export async function fetchTrendingMovieData() {
-  const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1&api_key=${process.env.NEXT_APP_TMDB_API_KEY}`;
+export async function fetchTrendingMovieData(page = 1) {
+  const url = `https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=${page}&api_key=${process.env.NEXT_APP_TMDB_API_KEY}`;
   return fetchMovieData(url);
 }
 
-export async function fetchLatestMovieData() {
+export async function fetchLatestMovieData(page = 1) {
   const year = new Date().getFullYear();
-  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_APP_TMDB_API_KEY}&year=${year}`;
+  const url = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.NEXT_APP_TMDB_API_KEY}&year=${year}&page=${page}`;
   const data = fetchMovieData(url);
   return data;
 }
