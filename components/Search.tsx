@@ -2,9 +2,15 @@
 import React from "react";
 import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { useRouter } from "next/navigation";
 
 function Search() {
   const [value, setValue] = useState("");
+  const router = useRouter();
+
+  function searchMovie() {
+    router.push(`/search?name=${value}`);
+  }
 
   return (
     <div className="z-[1] absolute mt-3 right-8 flex items-center bg-black text-white py-2 px-3 rounded-xl border-white border-[1px]">
@@ -17,7 +23,7 @@ function Search() {
           setValue(e.currentTarget.value);
         }}
       />
-      <button className="pl-2">
+      <button className="pl-2" onClick={() => value != "" && searchMovie()}>
         <CiSearch className="w-8 h-auto" />
       </button>
     </div>
