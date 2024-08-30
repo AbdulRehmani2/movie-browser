@@ -13,10 +13,6 @@ function page() {
     fetch(`/api/search?name=${name}`)
       .then((res) => res.json())
       .then((data) => setMovies(data));
-  }, []);
-
-  useEffect(() => {
-    console.log(movies);
   }, [movies]);
 
   return (
@@ -24,8 +20,7 @@ function page() {
       {movies.length == 0 ? (
         <span>Loading...</span>
       ) : (
-        // <List title={`Search Results for ${name}`} movies={movies} />
-        <div>hello</div>
+        <List title={`Search Results for ${name}`} movies={movies} />
       )}
     </>
   );

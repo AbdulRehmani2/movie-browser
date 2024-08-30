@@ -162,7 +162,7 @@ async function parseData(data: Data) {
 //   return await res.json();
 // }
 
-async function getDetails(id: string) {
+export async function getDetails(id: string) {
   const res = await fetch(
     `http://www.omdbapi.com/?apikey=${process.env.NEXT_APP_OMDB_API_KEY}&i=${id}`
   );
