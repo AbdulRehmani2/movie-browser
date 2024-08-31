@@ -3,15 +3,15 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://movie-browser-jqsus5eoo-abdulrehman-s-projects-39e93e2d.vercel.app/",
+      url: "https://${process.env.NEXT_PUBLIC_VERCEL_URL}/",
       lastModified: new Date(),
     },
     {
-      url: "https://movie-browser-jqsus5eoo-abdulrehman-s-projects-39e93e2d.vercel.app/search",
+      url: "https://${process.env.NEXT_PUBLIC_VERCEL_URL}/search",
       lastModified: new Date(),
     },
     {
-      url: "https://movie-browser-jqsus5eoo-abdulrehman-s-projects-39e93e2d.vercel.app/movie/browse",
+      url: "https://${process.env.NEXT_PUBLIC_VERCEL_URL}/movie/browse",
       lastModified: new Date(),
     },
   ];

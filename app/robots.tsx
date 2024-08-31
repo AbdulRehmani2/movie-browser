@@ -6,7 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap:
-      "https://movie-browser-jqsus5eoo-abdulrehman-s-projects-39e93e2d.vercel.app/sitemap.xml",
+    sitemap: "https://${process.env.NEXT_PUBLIC_VERCEL_URL}/sitemap.xml",
   };
 }
