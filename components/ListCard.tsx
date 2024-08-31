@@ -2,6 +2,7 @@ import React from "react";
 import { movieType } from "./Carousel";
 import Image from "next/image";
 import Link from "next/link";
+import notFound from "@/public/not-found.jpg";
 
 function ListCard({ data }: { data: movieType }) {
   const NAME_CHAR_LIMIT = 17;
@@ -9,7 +10,7 @@ function ListCard({ data }: { data: movieType }) {
     <div className="w-[13rem] p-1 h-[20rem] flex flex-col justify-between items-center group cursor-pointer">
       <Image
         className="group-hover:scale-105 transition-all duration-300"
-        src={data.image}
+        src={data.image == "N/A" ? notFound : data.image}
         alt={data.name}
         width={190}
         height={350}

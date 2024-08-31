@@ -16,7 +16,5 @@ export async function GET(request: Request) {
     data = await fetchTrendingMovieData(page);
   }
 
-  console.log(data);
-
   return Response.json(data);
 }

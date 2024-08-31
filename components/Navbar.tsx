@@ -4,7 +4,11 @@ import HoverSearch from "./HoverSearch";
 import Link from "next/link";
 
 function Navbar() {
-  const items = ["Home", "New Movies", "Top Rated Movies"];
+  const items = [
+    { name: "Home", link: "/" },
+    { name: "New Movies", link: "/movie/browse?list=new" },
+    { name: "Top Rated Movies", link: "/movie/browse?list=trending" },
+  ];
   return (
     <div className="bg-slate-900">
       <div className="grid grid-cols-3 grid-rows-1 py-5 px-3">
