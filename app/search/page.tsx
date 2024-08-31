@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { movieType } from "@/components/Carousel";
 import List from "@/components/List";
 
-function page() {
+function Page() {
   const [movies, setMovies] = useState<movieType[]>([]);
   const searchParams = useSearchParams();
   const name = searchParams.get("name");
@@ -26,4 +26,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

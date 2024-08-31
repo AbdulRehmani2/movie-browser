@@ -5,7 +5,7 @@ import { movieType } from "@/components/Carousel";
 import List from "@/components/List";
 import Loading from "@/components/Loading";
 
-function page() {
+function Page() {
   const searchParams = useSearchParams();
   const list = searchParams.get("list");
   const [page, setPage] = useState(1);
@@ -54,4 +54,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

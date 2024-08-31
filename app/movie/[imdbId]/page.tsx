@@ -1,7 +1,7 @@
 import MovieContainer from "@/components/MovieContainer";
 import React from "react";
 
-function pages({ params }: { params: { imdbId: string } }) {
+function Page({ params }: { params: { imdbId: string } }) {
   const imdbId = params.imdbId;
   return (
     <div className="my-10">
@@ -10,4 +10,4 @@ function pages({ params }: { params: { imdbId: string } }) {
   );
 }
 
-export default pages;
+export default Page;
