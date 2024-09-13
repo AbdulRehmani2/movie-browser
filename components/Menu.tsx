@@ -13,7 +13,7 @@ function Menu({ items }: { items: { name: string; link: string }[] }) {
   return (
     <div>
       <button disabled={!hidden} onClick={() => setHidden((prev) => !prev)}>
-        <IoMenuSharp className="w-7 h-auto" />
+        <IoMenuSharp className="w-7 h-auto hover:text-white hover:scale-[1.05]" />
       </button>
       <div className="w-24">
         <FocusElement hidden={hidden} setHidden={setHidden}>
@@ -23,7 +23,12 @@ function Menu({ items }: { items: { name: string; link: string }[] }) {
             {items.map(
               (element: { name: string; link: string }, index: number) => {
                 return (
-                  <Link href={element.link} key={index} className={hoverEffect}>
+                  <Link
+                    href={element.link}
+                    key={index}
+                    className={hoverEffect}
+                    onClick={() => setHidden(true)}
+                  >
                     {element.name}
                   </Link>
                 );

@@ -13,24 +13,23 @@ function BrowseComponent() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setMovies([]);
+    setPage(1);
+  }, [list]);
+
+  useEffect(() => {
     setLoading(true);
     fetch(`/api/fetch?page=${page}&list=${list}`)
       .then((res) => res.json())
       .then((data) => {
         setMovies((prev) => [...prev, ...data]);
         setLoading(false);
-        console.log(movies);
       });
   }, [page, list]);
 
-  useEffect(() => {
-    setMovies([]);
-    setPage(1);
-  }, [list]);
-
   return (
     <Suspense fallback={<Loading />}>
-      <div className="h-full mx-3">
+      <div className="min-h-[80vh] mx-3 flex flex-col items-center justify-center">
         <List
           title={`${
             list && list.slice(0, 1).toUpperCase() + list.slice(1, list.length)

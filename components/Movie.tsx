@@ -6,8 +6,10 @@ import { FaStar } from "react-icons/fa";
 function Movie({ data }: { data: movieType }) {
   return (
     <div className="mx-5">
-      <h1 className="ml-24 text-4xl">Movie Details</h1>
-      <div className="my-20 flex h-full gap-5 items-center justify-center flex-wrap md:flex-nowrap">
+      <div className="flex justify-center">
+        <h1 className="text-4xl">Movie Details</h1>
+      </div>
+      <div className="my-20 flex h-full gap-10 items-center justify-center flex-wrap md:flex-nowrap">
         <Image
           className="rounded-lg"
           src={data.image}
@@ -54,7 +56,7 @@ function Movie({ data }: { data: movieType }) {
           <div className="my-3">
             <a
               href={data.url}
-              className="hover:text-blue-500 hover:border-b-[1px] border-blue-500 py-2 px-1 bg-white text-black rounded-lg my-4"
+              className="hover:text-blue-500 hover:border-b-[1px] border-blue-500 py-2 px-2 bg-white text-black rounded-lg my-4"
             >
               Visit ImdB
             </a>

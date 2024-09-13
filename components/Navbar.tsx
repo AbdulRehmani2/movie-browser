@@ -13,8 +13,8 @@ function Navbar() {
   ];
   return (
     <div className="bg-slate-900">
-      <div className="grid grid-cols-3 grid-rows-1 py-5 px-5">
-        <div className="flex justify-start">
+      <div className="grid grid-cols-3 grid-rows-1 py-5 px-10">
+        <div className="flex justify-start items-center">
           <Menu items={items} />
         </div>
         <h1 className="flex justify-center items-center">
@@ -22,8 +22,8 @@ function Navbar() {
             <Image
               src={logo}
               alt="movie browser"
-              width={70}
-              height={70}
+              width={100}
+              height={100}
             ></Image>
           </Link>
         </h1>

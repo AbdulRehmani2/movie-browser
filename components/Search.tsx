@@ -4,12 +4,21 @@ import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 
-function Search() {
+function Search({
+  setHidden,
+}: {
+  setHidden: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [value, setValue] = useState("");
   const router = useRouter();
 
   function searchMovie() {
+    if (value == "") {
+      return;
+    }
+    setHidden(true);
     router.push(`/search?name=${value}`);
+    setValue("");
   }
 
   return (
@@ -23,8 +32,8 @@ function Search() {
           setValue(e.currentTarget.value);
         }}
       />
-      <button className="pl-2" onClick={() => value != "" && searchMovie()}>
-        <CiSearch className="w-8 h-auto" />
+      <button className="pl-2" onClick={searchMovie}>
+        <CiSearch className="w-8 h-auto hover:text-white" />
       </button>
     </div>
   );

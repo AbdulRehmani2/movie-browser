@@ -9,6 +9,10 @@ export async function GET(request: Request) {
     const res = await fetch(url);
     const data = await res.json();
 
+    if (!data.Search) {
+      return Response.json([]);
+    }
+
     const idList = data.Search.map((element: { imdbID: string }) => {
       return element.imdbID;
     });

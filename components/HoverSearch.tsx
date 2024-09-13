@@ -10,10 +10,10 @@ function HoverSearch() {
   return (
     <div>
       <button disabled={!hidden} onClick={() => setHidden((prev) => !prev)}>
-        <CiSearch className="w-7 h-auto" />
+        <CiSearch className="w-7 h-auto hover:text-white hover:scale-[1.05]" />
       </button>
       <FocusElement hidden={hidden} setHidden={setHidden}>
-        <Search />
+        <Search setHidden={setHidden} />
       </FocusElement>
     </div>
   );
