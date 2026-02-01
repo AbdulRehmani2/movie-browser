@@ -86,6 +86,8 @@ async function fetchMovieData(url: string) {
 
     const data = await res.json();
 
+    // console.log(data);
+
     const idList = await parseData(data);
 
     const promises = (await idList).map((element) => {
@@ -103,23 +105,28 @@ async function fetchMovieData(url: string) {
     //   };
     // });
 
-    const movies = details.map((element) => {
-      return {
-        name: element.Title,
-        description: element.Plot,
-        imdbId: element.imdbID,
-        url: `https://www.imdb.com/title/${element.imdbID}/`,
-        image: element.Poster,
-        aggregateRating: {
-          ratingValue: element.imdbRating,
-        },
-        type: element.Type,
-        genre: element.Genre.split(","),
-        actor: element.Actors.split(",").map((e: string) => {
-          return { name: e, url: "#" };
-        }),
-      };
-    });
+    const movies = details
+      .map((element) => {
+        if (element.Error) {
+          return null;
+        }
+        return {
+          name: element.Title,
+          description: element.Plot,
+          imdbId: element.imdbID,
+          url: `https://www.imdb.com/title/${element.imdbID}/`,
+          image: element.Poster,
+          aggregateRating: {
+            ratingValue: element.imdbRating,
+          },
+          type: element.Type,
+          genre: element.Genre.split(","),
+          actor: element.Actors.split(",").map((e: string) => {
+            return { name: e, url: "#" };
+          }),
+        };
+      })
+      .filter((element) => element !== null);
 
     //   const movies: {
     //     name: string;
@@ -164,14 +171,14 @@ async function parseData(data: Data) {
 
 export async function getDetails(id: string) {
   const res = await fetch(
-    `http://www.omdbapi.com/?apikey=${process.env.NEXT_APP_OMDB_API_KEY}&i=${id}`
+    `http://www.omdbapi.com/?apikey=${process.env.NEXT_APP_OMDB_API_KEY}&i=${id}`,
   );
   return await res.json();
 }
 
 async function getId(id: number) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=${process.env.NEXT_APP_TMDB_API_KEY}`
+    `https://api.themoviedb.org/3/movie/${id}/external_ids?api_key=${process.env.NEXT_APP_TMDB_API_KEY}`,
   );
   const data = await res.json();
   return data.imdb_id;

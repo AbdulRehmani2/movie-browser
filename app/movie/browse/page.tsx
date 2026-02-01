@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import BrowseComponent from "@/components/BrowseComponent";
 

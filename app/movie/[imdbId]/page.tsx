@@ -7,8 +7,8 @@ export const metadata: Metadata = {
   description: "Show all the details related to the movie",
 };
 
-function Page({ params }: { params: { imdbId: string } }) {
-  const imdbId = params.imdbId;
+async function Page({ params }: { params: { imdbId: string } }) {
+  const { imdbId } = await params;
   return (
     <div className="my-10">
       <MovieContainer id={imdbId} />

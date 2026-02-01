@@ -11,6 +11,7 @@ function Movie({ data }: { data: movieType }) {
       </div>
       <div className="my-20 flex h-full gap-10 items-center justify-center flex-wrap md:flex-nowrap">
         <Image
+          priority
           className="rounded-lg"
           src={data.image}
           alt={data.name}
@@ -40,7 +41,7 @@ function Movie({ data }: { data: movieType }) {
                         : element.name}
                     </a>
                   );
-                }
+                },
               )}
             </div>
             <span>Genre: </span>
